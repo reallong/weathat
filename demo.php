@@ -49,30 +49,7 @@
  *                   不见满街漂亮妹，哪个归得程序员？
  */
 
-$out_trade_no = '2018051717515773848715';
-$paystatus = D('coursebag')->getpaystatus($out_trade_no);//查询订单状态
-$user = D('user')->getUid($paystatus['uid']);//查询课时
-$re['mch_id']           = '商户号';//商户号
-$re['total_fee']        = 19999/100;//支付金额，出来的金额要除以100
-$re['transaction_id']   = '454554520185275744';//微信内部的订单流水号
-$re['openid']           = 'openid';//微信加密的用户身份识别
-$re['bank_type']        = '银行类型';//银行类型
-$re['cash_fee']         = 100;//现金支付金额
-$re['fee_type']         = '货币类型';//货币类型
-$re['time_end']         = '20180518102036';//订单支付时间
-$re['trade_state']      = '交易状态';//交易状态
-$re['trade_state_desc']      = '交易状态描述';//交易状态描述
-$re['pay_flag']      = 1;//交易状态描述
 
-$done = D('coursebag')->setpaystatus($out_trade_no,$re);//修改订单状态
-$course = D('user')->addToken($user['uid'],array('course_number'=>$paystatus['course_number']+$user['course_number']));//修改课时
-Jsondata($done);
-Jsondata($course);
-if($course && $done){
-    echo 111;exit;
-}else{
-    echo 452;exit;
-}
 
 
 
